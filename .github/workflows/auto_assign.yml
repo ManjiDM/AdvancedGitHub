@@ -1,6 +1,6 @@
 name: 'Auto Assign'
 on:
-  pull_request:
+  pull_request_target:
     types: [opened]
 
 jobs:
@@ -10,3 +10,4 @@ jobs:
       - uses: kentaro-m/auto-assign-action@v2.0.0
         with:
           configuration-path: '.github/workflows/configs/auto_assign_config.yml'
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
