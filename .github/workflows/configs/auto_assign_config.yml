@@ -1,10 +1,6 @@
-# Set to true to add assignees to pull requests
-addAssignees: author
 addReviewers: true
 numberOfReviewers: 0
 
 reviewers:
   - ManjiDM
   - AtomDM
-
-runOnDraft: true
