@@ -6,19 +6,15 @@ jobs:
         name: 1stJob
         runs-on: ubuntu-latest
         steps:
-            - name: Step one
-              run: env | sort
-
+            - run: env | sort
     job2:
         name: 2ndJob
         runs-on: windows-latest
         steps:
-            - name: Step one
-              run: "Get-ChildItem Env: | Sort-Object Name"
-    job2:
-    name: 3rdJob
-    needs: [ job1, job2]
-    runs-on: ubuntu-latest
-    steps:
-        - name: Step two
-            run: "echo finished"
+            - run: "Get-ChildItem Env: | Sort-Object Name"
+    job3:
+        name: 3rdJob
+        needs: [ job1, job2]
+        runs-on: ubuntu-latest
+        steps:
+            - run: "echo finished"
