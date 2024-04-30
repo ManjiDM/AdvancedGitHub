@@ -7,8 +7,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Step one
-              uses: actions/checkout@v2
-            - name: Step two
               run: env | sort
 
     job2:
@@ -16,6 +14,11 @@ jobs:
         runs-on: windows-latest
         steps:
             - name: Step one
-              uses: actions/checkout@v2
-            - name: Step two
               run: "Get-ChildItem Env: | Sort-Object Name"
+    job2:
+    name: 3rdJob
+    needs: [ job1, job2]
+    runs-on: ubuntu-latest
+    steps:
+        - name: Step two
+            run: "echo finished"
