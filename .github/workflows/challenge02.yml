@@ -3,14 +3,10 @@ on: push
 env:
     ARTIFACT_NAME: my_artifact
 jobs:
-    check-out:
+    main:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4.1.4
-    upload-artifact:
-        needs: check-out
-        runs-on: ubuntu-latest
-        steps:
             - uses: actions/upload-artifact@v4.3.3
               with:
                   name: ${{ env.ARTIFACT_NAME }}
