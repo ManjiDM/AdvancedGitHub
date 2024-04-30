@@ -1,0 +1,25 @@
+name: Challenge 01
+on: push
+
+jobs:
+    job01:
+        runs-on: ubuntu-latest
+        steps:
+            - name: ubuntu step
+              run: date "+%H:%M:%S   %d/%m/%y"
+    job02:
+        runs-on: windows-latest
+        steps:
+            - name: windows step
+              run: get-date -format "HH:mm:ss dd-MMM-yyyy"
+    job03:
+        runs-on: macos-latest
+        steps: 
+            - name: mac step
+              run: date "+%H:%M:%S   %d/%m/%y"
+    job04:
+        runs-on: windows-latest
+        needs: [job01, job02, job03]
+        steps:
+            - name: windows step
+              run: get-date -format "HH:mm:ss dd-MMM-yyyy"              
