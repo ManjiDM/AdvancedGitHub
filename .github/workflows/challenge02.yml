@@ -1,0 +1,19 @@
+name: Challenge 02
+on: push_request
+env:
+    - ARTIFACT_NAME: "artifact_name"
+
+jobs:
+    check-out:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: 'actions/checkout'
+                with: 
+                    variable: name
+    upload-artifact:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: 'actions/upload-artifact'
+                with:
+                    variable: name
+            
