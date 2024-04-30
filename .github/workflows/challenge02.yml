@@ -1,18 +1,18 @@
 name: Challenge 02
-on: push_request
+on: push
 env:
-    - ARTIFACT_NAME: "artifact_name"
+    ARTIFACT_NAME: "artifact_name"
 jobs:
     check-out:
         runs-on: ubuntu-latest
         steps:
-            - uses: 'actions/checkout'
+            - uses: actions/checkout@v4.1.4
               with: 
-                variable: name
+                repository: ${{github.repository}}
     upload-artifact:
         runs-on: ubuntu-latest
         steps:
-            - uses: 'actions/upload-artifact'
+            - uses: actions/upload-artifact@v4.3.3
               with:
-                variable: name
-            
+                  name: ${{ ARTIFACT_NAME }}
+                  if-no-files-found: warn
