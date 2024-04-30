@@ -1,7 +1,5 @@
 name: 'Auto Assign'
-on:
-  pull_request:
-    types: [opened]
+on: pull_request_target
 
 jobs:
   add-reviewers:
@@ -10,9 +8,10 @@ jobs:
       - uses: kentaro-m/auto-assign-action@v2.0.0
         with:
           configuration-path: '.github/auto_reviewers.yml'
-  add-assignee:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: kentaro-m/auto-assign-action@v2.0.0
-        with:
-          configuration-path: '.github/auto_assignee.yml'
+  assign_me:
+      runs-on: ubuntu-latest
+      name: Assign me
+      steps:
+          - uses: AlbertHernandez/assign-me@v1.0.0
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
