@@ -1,0 +1,23 @@
+name: Challenge 03
+on: push
+
+jobs:
+  check-out:
+    runs-on: ubuntu_latest
+    steps:
+      - name: checkout 
+        uses: actions/checkout@v4.1.4
+      - name: run script  
+        run: python hello.py
+  artifact:
+    runs-on: ubuntu_latest 
+    needs: check-out
+    steps:       
+      - name: checkout 
+        uses: actions/checkout@v4.1.4  
+      - name: create artifact
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          path: ./.github/workflows 
+          if-no-files-found: error
+          
