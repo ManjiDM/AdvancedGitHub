@@ -1,5 +1,7 @@
 name: Challenge 02
-on: push
+on: 
+    pull_request:
+        types: [opened]    
 env:
     ARTIFACT_NAME: my_artifact
 jobs:
