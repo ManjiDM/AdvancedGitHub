@@ -1,5 +1,6 @@
 name: keyword-releaser
 on: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
