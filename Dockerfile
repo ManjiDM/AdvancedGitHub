@@ -9,5 +9,7 @@ RUN apk add --no-cache \
         which jq
         
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN  chmod +x entrypoint.sh && ls -a
+
 
 ENTRYPOINT ["entrypoint.sh"]
