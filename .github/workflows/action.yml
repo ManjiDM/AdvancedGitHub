@@ -1,1 +1,11 @@
+name: action
+on: pull_request
 
+jobs:
+  whatever:
+    name: whatever
+    runs-on: ubuntu-latest
+    steps:
+      - name: step01
+        run: echo whatever
+      
