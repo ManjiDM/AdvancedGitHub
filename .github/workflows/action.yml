@@ -1,11 +1,13 @@
-name: action
-on: pull_request
+name: keyword-releaser
+on: push
 
 jobs:
-  whatever:
-    name: whatever
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: step01
-        run: echo whatever
-      
+      - uses: actions/checkout@v1
+      - uses: ManjiDM/CustomAction@main
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'FIXED'
