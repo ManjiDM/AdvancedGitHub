@@ -40,4 +40,6 @@ jobs:
       - name: Aggregate fetched tags
         run: |
           echo "Aggregating tags from all repositories..."
-          env | grep ^art_ || true
+          echo env
+          
+          
