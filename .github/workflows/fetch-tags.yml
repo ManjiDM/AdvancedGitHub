@@ -1,0 +1,43 @@
+name: Fetch Tags from Multiple Repositories
+on: workflow_dispatch
+
+jobs:
+  fetch-tags:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.repo }}
+    strategy:
+      matrix:
+        include:
+          - repo: "AdvancedGitHub"
+            artifact: "artifact1"
+          - repo: "ZombieRunnerFPS"
+            artifact: "artifact2"
+          - repo: "TwinStick"
+            artifact: "artifact3"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: "ManjiDM/${{ matrix.repo }}"
+          fetch-depth: 0
+
+      - name: Get latest tag
+        run: |
+          echo "Processing artifact: ${{ matrix.artifact }}"
+          latest_tag=$(git tag --sort=-creatordate | head -n 1)
+          if [ -z "$latest_tag" ]; then
+            echo "❌No tag found for ${{ matrix.repo }}">> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "${{ matrix.artifact }}=$latest_tag" >> $GITHUB_STEP_SUMMARY
+            echo "${{ matrix.artifact }}=$latest_tag" >> $GITHUB_ENV
+          fi
+
+  process-tags:
+    needs: fetch-tags
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aggregate fetched tags
+        run: |
+          echo "Aggregating tags from all repositories..."
+          env | grep ^art_ || true
