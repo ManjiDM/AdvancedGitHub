@@ -40,6 +40,4 @@ jobs:
       - name: Aggregate fetched tags
         run: |
           echo "Aggregating tags from all repositories..."
-          echo env
-          
-          
+          echo "VAR ${{ env.artifact1 }} ${{ env.artifact2 }} ${{ env.artifact3 }}" >> $GITHUB_STEP_SUMMARY
