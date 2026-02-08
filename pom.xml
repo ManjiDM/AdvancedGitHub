@@ -6,6 +6,8 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
+        <image.name>${project.artifactId}</image.name>
+        <image.tag>${project.version}</image.tag>
         <compiler-plugin.version>3.14.1</compiler-plugin.version>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,6 +46,10 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-docker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
             <scope>test</scope>
         </dependency>
@@ -61,6 +67,12 @@
                 <artifactId>quarkus-maven-plugin</artifactId>
                 <version>${quarkus.platform.version}</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <systemProperties>
+                    <quarkus.container-image.name>${image.name}</quarkus.container-image.name>
+                    <quarkus.container-image.tag>${image.tag}</quarkus.container-image.tag>
+                    </systemProperties>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
