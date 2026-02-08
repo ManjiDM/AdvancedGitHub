@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: my-app-container
-          image: my-docker-image:latest
+          image: xaksregistryx.azurecr.io/my-quarkus-image:latest
